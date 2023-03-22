@@ -6,7 +6,7 @@ import {
   ButtonLabel,
   Input,
 } from './Searchbar.styled';
-
+import { toast } from 'react-toastify';
 export default class Searchbar extends Component {
   state = {
     searchQuery: '',
@@ -20,10 +20,10 @@ export default class Searchbar extends Component {
     e.preventDefault();
     if (this.state.searchQuery.trim() === '') {
       // alert('Ваш запит не коректний');
-      this.props.value();
+      toast.warning('Enter data in the search field!');
       return;
     }
-    this.props.onSubmit(this.state.searchQuery);
+    this.props.onSubmit(this.state.searchQuery.trim().toLowerCase());
 
     this.resetInput();
   };
